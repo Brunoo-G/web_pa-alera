@@ -1,0 +1,3 @@
+# Cada producto tiene su link: /p/<id>/<nombre>. Netlify sirve la misma página
+# y la web abre la ficha de ese producto.
+/p/*   /index.html   200
