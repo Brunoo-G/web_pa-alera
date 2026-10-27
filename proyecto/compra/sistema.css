@@ -1,0 +1,121 @@
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SISTEMA DE MEDIDAS (26/10/2026) · basado en Material Design 3
+   Pocas medidas, definidas una vez. Va al final para mandar sobre lo viejo.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  /* esquinas */
+  --r-sm:12px;   /* fotos, campos de texto, cajas chicas */
+  --r-md:16px;   /* tarjetas y cajas */
+  --r-lg:24px;   /* hojas (ficha, carrito, compra) y menú lateral */
+  --r-full:100px;/* botones, chips y buscador */
+  /* espacios: múltiplos de 4 */
+  --e-1:4px; --e-2:8px; --e-3:12px; --e-4:16px; --e-6:24px; --e-8:32px;
+  /* alturas de control */
+  --h-btn:48px;       /* botón principal: Agregar, Continuar, Confirmar */
+  --h-btn-2:40px;     /* botón secundario: Ver más, Acceso administrador */
+  --h-campo:48px;     /* campos para escribir y buscador */
+  --h-chip:36px;      /* categorías, marcas, pasos de la compra */
+  --h-icono:40px;     /* botones redondos de ícono */
+  --h-icono-nav:44px; /* menú y carrito del encabezado */
+}
+
+/* ── Botones redondos de ícono: 40 px visibles, 48 px para tocar ────── */
+/* solo los redondos: los de texto (Cerrar sesión, Borrar) mantienen su ancho */
+.iconbtn:not(.iconbtn--txt):not(.iconbtn--borrar), .det__x, .paso button{width:var(--h-icono); height:var(--h-icono)}
+.iconbtn--txt, .iconbtn--borrar{height:var(--h-icono)}
+.iconbtn, .paso button{position:relative}
+:is(.iconbtn, .det__x, .paso button)::before{content:""; position:absolute; inset:-4px}
+.det__comp{right:calc(clamp(1.7rem,5.2vw,2.3rem) + var(--h-icono) + .85rem)}
+.menu__btn{width:var(--h-icono-nav); height:var(--h-icono-nav)}
+
+/* ── Botones de texto: principal 48 · secundario 40 ─────────────────── */
+.det__barra .btn-carro, #btnTerminar, #btnConfirmar, .clisto__wa{min-height:var(--h-btn)}
+.det__cant{height:var(--h-btn)}
+.vermas .btn, .foot__admin, .cookies__btns .btn{min-height:var(--h-btn-2); padding-block:0;
+  display:inline-flex; align-items:center; justify-content:center}
+
+/* ── Campos para escribir: 48 px ───────────────────────────────────── */
+.busca__input{min-height:var(--h-campo); padding-block:0}
+.cupon input{min-height:var(--h-campo); padding-block:0}
+.cupon button{min-height:var(--h-campo)}
+#btnFiltrar{width:var(--h-campo); height:var(--h-campo); padding:0; display:grid; place-items:center}
+.input, .textarea, select.input{border-radius:var(--r-sm)}
+#compraCuerpo .input, #compraCuerpo .textarea, #compraCuerpo select{border-radius:var(--r-sm)}
+
+/* ── Chips: 36 px ──────────────────────────────────────────────────── */
+#cats .cat, #catsCaja .mchip, .cpasos li{min-height:var(--h-chip); height:var(--h-chip);
+  padding-block:0; box-sizing:border-box}
+
+/* ── Esquinas ──────────────────────────────────────────────────────── */
+.pcard, .lista .grid > .pcard{border-radius:var(--r-md)}
+.pcard .pcard__media, .lista .grid > .pcard .pcard__media{border-radius:var(--r-sm)}
+.valor, .pasos__item, .opi, .ctop, .copc, .cresumen, .pcli{border-radius:var(--r-md)}
+.citem__th{border-radius:var(--r-sm)}
+.sheet__panel{border-radius:var(--r-lg) var(--r-lg) 0 0}
+.cajon .cajon__panel{border-radius:0 var(--r-lg) var(--r-lg) 0}
+@media (min-width:760px){
+  .cajon .cajon__panel{border-radius:var(--r-lg) 0 0 var(--r-lg)}
+  #shProd .sheet__panel{border-radius:var(--r-lg)}
+}
+
+/* ── Espacios internos (múltiplos de 4) ────────────────────────────── */
+.lista .grid > .pcard{padding:var(--e-2) var(--e-2) var(--e-4)}
+@media (max-width:639px){
+  .lista .grid > .pcard{padding:var(--e-2) var(--e-2) var(--e-3)}
+  .lista .grid > .pcard .pcard__body{padding:var(--e-3) var(--e-1) 0}
+}
+.valor{padding:var(--e-3) var(--e-4)}
+.pasos__item{padding:var(--e-4)}
+.opi{padding:var(--e-4)}
+.ctop{padding:var(--e-3)}
+.copc{padding:var(--e-3) var(--e-4)}
+.centr{padding:var(--e-3) var(--e-4)}
+
+/* ── Formularios de la compra (27/10/2026) ─────────────────────────────
+   1. El rótulo vive dentro del campo y sube cuando escribís.
+   2. Campos de 56 px de alto.  3. Esquinas suaves (16 px).
+   4. Teclado que ayuda: "siguiente" pasa al próximo campo (compra.js). */
+:root{ --h-campo-form:56px; }
+#compraCuerpo .cfield{position:relative; margin-bottom:var(--e-3)}
+#compraCuerpo .cfield > span{position:absolute; z-index:1; left:17px; right:14px; top:28px; transform:translateY(-50%);
+  margin:0; font-family:var(--sans); font-size:16px; font-weight:400; letter-spacing:0; text-transform:none;
+  color:var(--ink-faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; pointer-events:none;
+  transition:top .18s ease, font-size .18s ease, color .18s ease}
+#compraCuerpo .cfield > span i{font-style:normal; text-transform:none; letter-spacing:0; opacity:.75}
+/* rótulo arriba: con foco, con algo escrito, y siempre en el desplegable y en observaciones */
+#compraCuerpo .cfield:focus-within > span, #compraCuerpo .cfield.lleno > span,
+#compraCuerpo .cfield--fija > span{top:15px; font-size:12px; color:var(--ink-soft)}
+#compraCuerpo .cfield:focus-within > span{color:#8A6247}
+#compraCuerpo .cfield .input, #compraCuerpo .cfield .textarea{border-radius:var(--r-md); padding:22px 16px 6px;
+  font-size:16px; line-height:1.5}
+#compraCuerpo .cfield .input{height:var(--h-campo-form); min-height:var(--h-campo-form)}
+#compraCuerpo .cfield select.input{padding:22px 2.6rem 6px 12px}
+#compraCuerpo .cfield .textarea{padding-top:28px; min-height:96px; resize:vertical}
+/* el ejemplo aparece recién al tocar el campo, debajo del rótulo */
+#compraCuerpo .cfield .input::placeholder, #compraCuerpo .cfield .textarea::placeholder{color:transparent}
+#compraCuerpo .cfield:focus-within .input::placeholder,
+#compraCuerpo .cfield:focus-within .textarea::placeholder{color:#BDB0A5}
+#compraCuerpo .cfield .input:disabled{opacity:.55}
+#compraCuerpo .row2, #compraCuerpo .row3c{column-gap:var(--e-3); row-gap:0}
+
+/* ── Formularios del panel y el ingreso: mismo estilo que la compra ───── */
+.flota{position:relative}
+.flota > .input, .flota > .textarea{border-radius:var(--r-md); padding:22px 16px 6px; font-size:16px; line-height:1.5}
+.flota > .input{height:var(--h-campo-form); min-height:var(--h-campo-form)}
+.flota > select.input{padding:22px 2.6rem 6px 12px}
+.flota--area > .input, .flota--area > .textarea{height:auto; min-height:96px; padding-top:28px; resize:vertical}
+.flota > .flota__rot{position:absolute; z-index:1; left:17px; right:14px; top:28px; transform:translateY(-50%);
+  margin:0; font-family:var(--sans); font-size:16px; font-weight:400; letter-spacing:0; text-transform:none;
+  color:var(--ink-faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; pointer-events:none;
+  transition:top .18s ease, font-size .18s ease, color .18s ease}
+.flota > :focus + .flota__rot, .flota > .input:not(:placeholder-shown) + .flota__rot,
+.flota > .textarea:not(:placeholder-shown) + .flota__rot, .flota--fija > .flota__rot{top:15px; font-size:12px; color:var(--ink-soft)}
+.flota > :focus + .flota__rot{color:#8A6247}
+.flota > .input::placeholder, .flota > .textarea::placeholder{color:transparent}
+.flota > .input:focus::placeholder, .flota > .textarea:focus::placeholder{color:#BDB0A5}
+.flota > .field__hint{margin-top:.4rem}
+.flota--caja{position:relative}
+.flota--caja > .minibtn{min-height:var(--h-campo-form); min-width:var(--h-campo-form)}
+.flota > .input, .flota > .textarea{width:100%; min-width:0; box-sizing:border-box}
+.rango > .field, .row2 > .field, .row3 > .field{min-width:0}

@@ -1,0 +1,399 @@
+/* ═══ Finalizar compra (compra v2) ═══════════════════════════════════ */
+#shCompra .sheet__panel{max-width:560px; margin-inline:auto}
+#shCompra .sheet__head h2{font-size:1.35rem}
+#compraAtras[hidden]{display:none}
+.cbloque{padding:1.15rem 0 1.25rem; border-top:1px solid var(--line)}
+.cbloque:first-of-type{border-top:0; padding-top:.2rem}
+.cbloque h3{font-family:var(--serif); font-weight:600; font-size:1.12rem; letter-spacing:.02em; margin:0 0 .25rem}
+.cbloque__sub{font-size:.85rem; color:var(--ink-soft); margin:0 0 .95rem; font-weight:300}
+.cbloque .field>span i, .cbloque .field>span i{font-style:normal; text-transform:none; letter-spacing:0; opacity:.8}
+#compraCuerpo .input, #compraCuerpo .textarea{font-size:16px; border-radius:10px}
+#compraCuerpo .row2{gap:.75rem}
+.row3c{display:grid; grid-template-columns:1fr 7.5rem; gap:.75rem}
+.cfield.mal .input{border-color:#D08A78; box-shadow:0 0 0 3px rgba(208,138,120,.18)}
+.cfield__err{display:block; font-style:normal; font-size:.78rem; color:#B4472F; margin-top:.3rem}
+.cfield__err[hidden]{display:none}
+.cgrupo__err{margin:-.2rem 0 .6rem}
+.ccheck{display:flex; align-items:center; gap:.5rem; font-size:.88rem; color:var(--ink-soft);
+  margin:-.4rem 0 1rem; cursor:pointer}
+.ccheck input{width:18px; height:18px; accent-color:var(--oro)}
+.copcs{display:grid; gap:.55rem; margin:.7rem 0 .9rem}
+.copc{display:flex; align-items:center; gap:.8rem; width:100%; text-align:left; padding:.85rem .95rem;
+  border:1px solid var(--line-strong); border-radius:14px; background:var(--surface); color:var(--ink);
+  font-family:var(--sans); transition:border-color .2s, background .2s, box-shadow .2s}
+.copc:hover{border-color:var(--accent-deco)}
+.copc[aria-checked="true"]{border-color:var(--oro); background:#FBF4ED; box-shadow:0 0 0 1px var(--oro)}
+.copc__ico{flex:none; width:40px; height:40px; border-radius:12px; display:grid; place-items:center;
+  background:var(--panel-2); color:var(--accent)}
+.copc[aria-checked="true"] .copc__ico{background:var(--cta); color:#4A382E}
+.copc__ico svg{width:21px; height:21px; stroke-width:1.5}
+.copc__txt{flex:1; min-width:0}
+.copc__txt b{display:block; font-weight:500; font-size:.98rem}
+.copc__txt small{display:block; font-size:.8rem; color:var(--ink-faint); font-weight:300; line-height:1.35; margin-top:.1rem}
+.copc__precio{flex:none; font-size:.85rem; font-weight:500; color:var(--ink-soft); white-space:nowrap}
+.copc__check{flex:none; width:22px; height:22px; border-radius:100px; border:1.5px solid var(--line-strong);
+  display:grid; place-items:center; color:transparent}
+.copc__check svg{width:13px; height:13px; stroke-width:2.6}
+.copc[aria-checked="true"] .copc__check{background:var(--oro); border-color:var(--oro); color:#3E2F27}
+.copc--no{opacity:.5; cursor:not-allowed}
+.copc--no:hover{border-color:var(--line-strong)}
+.cretiro, .cmapa{border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--surface);
+  margin:.2rem 0 1rem}
+.cretiro[hidden], .cmapa[hidden], .cdir[hidden], .cdir__otra[hidden]{display:none}
+.cretiro .field__hint{padding:0 .95rem .85rem; margin:0}
+.cmapa__cab{display:flex; gap:.65rem; align-items:flex-start; padding:.8rem .95rem}
+.cmapa__cab>svg{flex:none; width:20px; height:20px; color:var(--accent); margin-top:.1rem}
+.cmapa__cab div{flex:1; min-width:0}
+.cmapa__cab b{display:block; font-weight:500; font-size:.92rem}
+.cmapa__cab small{display:block; font-size:.78rem; color:var(--ink-faint); font-weight:300; margin-top:.1rem}
+.cmapa__abrir{flex:none; font-size:.78rem; color:var(--accent); text-decoration:underline; text-underline-offset:.2em}
+.cmapa__marco{height:190px; background:var(--panel-2)}
+.cmapa__marco iframe{width:100%; height:100%; border:0; display:block}
+.cresumen{background:var(--panel-2); border:0; border-radius:14px; padding:1rem 1rem .4rem; margin-top:.4rem}
+.cresumen h3{font-size:1rem}
+.cres__items{list-style:none; margin:.5rem 0 .6rem; padding:0; display:grid; grid-template-columns:minmax(0,1fr); gap:.35rem}
+.cres__items li{display:flex; justify-content:space-between; gap:.8rem; font-size:.86rem; color:var(--ink-soft)}
+.cres__items li span:first-child{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.cres__items li span:last-child{flex:none; font-variant-numeric:tabular-nums}
+.cresumen .totales{margin-top:.4rem}
+.cres__falta{font-size:.82rem; color:#2E7D4F; margin:.3rem 0 .6rem}
+#compraPie[hidden]{display:none}
+.cpasos{list-style:none; display:flex; gap:.35rem; margin:0 0 1.1rem; padding:0;
+  font-family:var(--sans); font-size:.8rem; color:var(--ink-faint)}
+.cpasos li{flex:1; display:flex; align-items:center; justify-content:center; gap:.4rem;
+  padding:.38rem .3rem; border-radius:100px; background:var(--panel-2); white-space:nowrap;
+  transition:background .25s, color .25s}
+.cpasos li span{width:19px; height:19px; flex:none; border-radius:100px; display:grid; place-items:center;
+  font-size:.7rem; font-weight:600; background:rgba(90,70,56,.12)}
+.cpasos li.hoy{background:var(--cta); color:#4A382E; font-weight:500}
+.cpasos li.hoy span{background:rgba(255,255,255,.55)}
+.cpasos li.ok{background:#E3F1E8; color:#2E7D4F; cursor:pointer}
+.cpasos li.ok span{background:#2E9E5B; color:#fff}
+.cmapa__cab b i{font-style:normal; font-weight:300; color:var(--ink-faint); font-size:.85em}
+.cmapa__marco--vivo{height:230px; position:relative; z-index:0}
+.cmapa__marco--vivo .leaflet-control-attribution{font-size:9px}
+.cmapa__sin{padding:1rem; margin:0}
+.cmapa__pie{display:flex; align-items:center; gap:.7rem; flex-wrap:wrap; padding:.65rem .95rem}
+.cmapa__yo{display:inline-flex; align-items:center; gap:.4rem; padding:.5rem .9rem; border-radius:100px;
+  border:1px solid var(--line-strong); font-family:var(--sans); font-size:.86rem; color:var(--accent);
+  background:var(--surface)}
+.cmapa__yo svg{width:16px; height:16px}
+.cmapa__yo[hidden]{display:none}
+.cmapa__estado{font-size:.8rem; color:#2E7D4F}
+.cpie__total{margin:0 0 .55rem; text-align:center; font-family:var(--sans); font-size:.86rem; color:var(--ink-soft)}
+.cpie__total:empty{display:none}
+.ctransf{margin-top:.2rem}
+.ctransf .clisto__monto{align-items:center}
+.ctransf .clisto__monto .clisto__copiar{margin-left:.5rem}
+.ctransf .clisto__monto b{margin-left:auto}
+.ctransf__nota{margin-top:.8rem}
+.solo-otra[hidden]{display:none}
+.clisto>p{font-size:1rem}
+.clisto__resumen h4{margin-top:.8rem}
+/* Pedido recibido */
+.clisto{text-align:center; padding:.6rem 0 calc(1.6rem + env(safe-area-inset-bottom))}
+.clisto__ok{width:58px; height:58px; margin:0 auto .8rem; border-radius:100px; background:#2E9E5B;
+  display:grid; place-items:center; color:#fff; animation:latido .45s cubic-bezier(.3,1.6,.5,1)}
+.clisto__ok svg{width:28px; height:28px; stroke-width:2.6}
+.clisto h3{font-family:var(--serif); font-size:1.45rem; font-weight:600; margin:0 0 .45rem}
+.clisto>p{color:var(--ink-soft); font-size:.95rem; line-height:1.5; margin:0 auto 1.1rem; max-width:34ch}
+.clisto__wa{width:100%; gap:.6rem; min-height:52px}
+.clisto__wa svg{width:18px; height:18px}
+.clisto__caja{text-align:left; border:1px solid var(--line); border-radius:14px; padding:.95rem 1rem;
+  margin-top:.9rem; background:var(--surface)}
+.clisto__caja h4{display:flex; align-items:center; gap:.5rem; font-family:var(--sans); font-weight:500;
+  font-size:.98rem; margin:0 0 .6rem}
+.clisto__caja h4 svg{width:19px; height:19px; color:var(--accent)}
+.clisto__caja p{font-size:.86rem; color:var(--ink-soft); margin:.2rem 0}
+.clisto__monto{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline;
+  padding:.55rem .75rem; border-radius:10px; background:var(--panel-2); margin-bottom:.5rem}
+.clisto__monto span{font-size:.85rem; color:var(--ink-soft)}
+.clisto__monto b{font-family:var(--serif); font-size:1.3rem; font-weight:600}
+.clisto__monto small{flex-basis:100%; font-size:.76rem; color:var(--ink-faint)}
+.clisto__dato{display:flex; align-items:center; gap:.6rem; padding:.45rem .1rem; border-bottom:1px solid var(--line)}
+.clisto__dato span{width:4.2rem; flex:none; font-size:.8rem; color:var(--ink-faint)}
+.clisto__dato b{flex:1; min-width:0; font-weight:500; font-size:.95rem; overflow-wrap:anywhere; letter-spacing:.02em}
+.clisto__copiar{flex:none; width:34px; height:34px; border-radius:100px; display:grid; place-items:center;
+  border:1px solid var(--line-strong); color:var(--accent)}
+.clisto__copiar svg{width:16px; height:16px}
+.clisto__volver{margin-top:1.1rem; width:100%}
+@media (max-width:360px){ #compraCuerpo .row2{grid-template-columns:1fr} }
+
+.cpin{background:none; border:0}
+.cpin svg{width:34px; height:44px; filter:drop-shadow(0 3px 4px rgba(27,18,13,.35))}
+/* v3: transferencia inline, comprobante y ubicación */
+.ctransf__ped{display:flex; justify-content:space-between; align-items:baseline; padding:.1rem .1rem .6rem}
+.ctransf__ped span{font-size:.85rem; color:var(--ink-soft)}
+.ctransf__ped b{font-family:var(--sans); font-weight:600; letter-spacing:.08em; font-size:1.05rem}
+#cTransfCaja[hidden]{display:none}
+#cTransfCaja .ctransf{margin-top:.2rem}
+.csube{margin-top:.9rem; padding-top:.8rem; border-top:1px solid var(--line)}
+.csube__tit{margin:0 0 .5rem; font-size:.63rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-faint)}
+.csube__btn{display:flex; align-items:center; justify-content:center; gap:.5rem; width:100%;
+  padding:.85rem 1rem; border:1.5px dashed var(--accent-deco); border-radius:12px; background:#FBF6F1;
+  color:var(--accent); font-family:var(--sans); font-size:.95rem; font-weight:500; cursor:pointer}
+.csube__btn svg{width:18px; height:18px}
+.csube__ok{display:flex; align-items:center; gap:.7rem; padding:.55rem .6rem; border-radius:12px;
+  background:#E3F1E8; color:#2E7D4F}
+.csube__ok img, .csube__ok>svg{width:46px; height:46px; flex:none; border-radius:8px; object-fit:cover; background:#fff}
+.csube__ok>svg{padding:12px}
+.csube__ok div{flex:1; min-width:0}
+.csube__ok b{display:block; font-weight:500; font-size:.92rem}
+.csube__ok small{display:block; font-size:.76rem; color:#4E7A60; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.csube__quitar{flex:none; width:32px; height:32px; border-radius:100px; display:grid; place-items:center; color:#2E7D4F}
+.csube__quitar svg{width:14px; height:14px}
+.csube .field__hint{margin-top:.55rem}
+#cDir>.cmapa__yo{margin:0 0 1rem}
+#cDir>.cmapa__estado{display:block; margin:-.55rem 0 .9rem}
+#cDir>.cmapa__estado:empty{display:none}
+.clisto__nota{font-size:.85rem; color:var(--ink-soft); margin:.6rem 0 0}
+.clisto__comp{display:flex; align-items:center; gap:.4rem; color:#2E7D4F !important; font-weight:500}
+.clisto__comp svg{width:16px; height:16px}
+.ctransf .clisto__dato:has(+ .csube){border-bottom:0}
+.clisto__resumen .clisto__comp{margin:.2rem 0 .1rem}
+/* v4 */
+.cdir__cab{display:flex; align-items:center; justify-content:space-between; gap:.6rem; margin:.3rem 0 .75rem}
+.cdir__cab>span{font-size:.63rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-faint)}
+.cdir__yo{display:inline-flex; align-items:center; gap:.3rem; font-family:var(--sans); font-size:.85rem;
+  color:var(--accent); padding:.3rem .1rem; text-decoration:underline; text-underline-offset:.2em;
+  text-decoration-color:rgba(134,101,79,.35)}
+.cdir__yo svg{width:15px; height:15px}
+.cmapa__estado{font-size:.82rem; color:#2E7D4F; margin:-.35rem 0 .85rem; line-height:1.45}
+.cmapa__estado[hidden]{display:none}
+.cmapa__estado.mal{color:#B4472F; background:#FBEDE8; border-radius:10px; padding:.6rem .75rem; margin-top:0}
+.cdir__cambiar{display:inline; color:var(--accent); font-weight:500; text-decoration:underline;
+  text-underline-offset:.2em; font-family:var(--sans); font-size:inherit; padding:0}
+/* bloque de transferencia */
+.ctransf{border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--surface); margin-top:.4rem}
+.ctransf__cab{display:flex; flex-direction:column; align-items:center; gap:.15rem; padding:1.1rem 1rem 1.05rem;
+  background:linear-gradient(168deg,#F7EDE3,#EFE1D3); text-align:center}
+.ctransf__ped{font-family:var(--sans); font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--accent); background:rgba(255,255,255,.7); padding:.22rem .65rem; border-radius:100px; margin-bottom:.45rem}
+.ctransf__cab small{font-size:.82rem; color:var(--ink-soft)}
+.ctransf__monto{font-family:var(--serif); font-weight:600; font-size:2.1rem; line-height:1.1; font-variant-numeric:tabular-nums}
+.ctransf__aviso{font-size:.78rem; color:var(--ink-soft); margin:.5rem 0 0}
+.ccopia{display:inline-flex; align-items:center; gap:.35rem; padding:.42rem .8rem; border-radius:100px;
+  border:1px solid var(--line-strong); background:var(--surface); color:var(--accent); font-family:var(--sans);
+  font-size:.82rem; font-weight:500; flex:none; transition:.2s}
+.ccopia svg{width:15px; height:15px}
+.ccopia.copiado{background:#E3F1E8; border-color:#BFE0CB; color:#2E7D4F}
+.ccopia--claro{margin-top:.55rem; background:rgba(255,255,255,.8)}
+.ctransf__datos{padding:.4rem 1rem .2rem}
+.cdato{display:flex; align-items:center; gap:.7rem; padding:.7rem 0; border-bottom:1px solid var(--line)}
+.cdato>div{flex:1; min-width:0}
+.cdato>div>span{display:block}
+.cdato b{display:block; font-weight:500; font-size:.95rem; overflow-wrap:anywhere; letter-spacing:.02em}
+.cdato--grande b{font-size:1.15rem; font-weight:600; letter-spacing:.04em}
+.ctransf__tit{font-size:.82rem; color:var(--ink-soft); margin:.65rem 0 .3rem}
+.ctransf__tit b{font-weight:500; color:var(--ink)}
+.ctransf .csube{margin:0; padding:.9rem 1rem 1rem; border-top:0}
+/* pantalla final */
+.clisto{padding-bottom:.4rem}
+.clisto__det{margin-top:.2rem}
+.clisto__info{display:grid; gap:.7rem; margin:.9rem 0 .5rem; padding-top:.85rem; border-top:1px solid rgba(90,70,56,.15)}
+.clisto__linea{display:flex; gap:.65rem; align-items:flex-start}
+.clisto__linea>svg{flex:none; width:19px; height:19px; color:var(--accent); margin-top:.1rem}
+.clisto__linea b{display:block; font-weight:500; font-size:.92rem}
+.clisto__linea small{display:block; font-size:.82rem; color:var(--ink-soft); line-height:1.4}
+.clisto__acciones{padding:1rem 0 calc(1.4rem + env(safe-area-inset-bottom)); text-align:center}
+.clisto__wa .terminar__txt{letter-spacing:.08em; font-size:.84rem}
+.clisto__volver{display:inline-block; width:auto; margin-top:.9rem; font-family:var(--sans); font-size:.88rem; color:var(--ink-soft);
+  text-decoration:underline; text-underline-offset:.22em; text-decoration-color:rgba(90,70,56,.3); padding:.4rem .6rem}
+.envtit{font-family:var(--sans); font-weight:600; font-size:.95rem; margin:1.1rem 0 .55rem}
+.cresumen.clisto__det{padding-top:1rem}
+/* v5 */
+#compraCuerpo .field>span i{font-style:normal; text-transform:uppercase; letter-spacing:inherit; opacity:.75}
+.cdato>div>span{font-family:var(--sans); font-size:.63rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-faint);
+  margin-bottom:.15rem}
+.ctransf__cab{display:block; text-align:left; padding:.9rem 1rem .2rem}
+.ctransf__cab .cdato{border-bottom:0; padding-top:.55rem}
+.ctransf__cab .ccopia{background:rgba(255,255,255,.85)}
+.ctransf__ped{display:inline-block; margin:0}
+.ctransf__aviso{margin:0 0 .8rem}
+.csube__btn{display:inline-flex; width:auto; padding:.5rem .95rem; font-size:.86rem; border-width:1px; border-radius:100px}
+.csube__btn svg{width:15px; height:15px}
+.ctransf__ya{display:flex; align-items:center; gap:.65rem; margin:0 1rem 1rem; padding:.8rem .9rem; border-radius:12px;
+  border:1.5px solid var(--line-strong); background:var(--surface); cursor:pointer; font-family:var(--sans);
+  font-size:.95rem; font-weight:500; color:var(--ink); transition:border-color .2s, background .2s}
+.ctransf__ya input{appearance:none; -webkit-appearance:none; margin:0; flex:none; width:22px; height:22px;
+  border:1.5px solid var(--line-strong); border-radius:6px; background:var(--surface); display:grid; place-items:center}
+.ctransf__ya input::after{content:""; width:11px; height:6px; opacity:0; border-left:2.2px solid #fff; border-bottom:2.2px solid #fff;
+  transform:rotate(-45deg) translate(1px,-1px)}
+.ctransf__ya input:checked{background:#2E9E5B; border-color:#2E9E5B}
+.ctransf__ya input:checked::after{opacity:1}
+.ctransf__ya.ok{border-color:#2E9E5B; background:#F0F8F3}
+.ctransf__err{margin:-.5rem 1rem 1rem}
+#btnConfirmar.apagado{opacity:.55}
+/* el ícono de WhatsApp no se achica cuando el texto ocupa dos líneas */
+.clisto__wa{display:flex; align-items:center; justify-content:center}
+.clisto__wa svg{flex:none; width:20px; height:20px; min-width:20px}
+.clisto__wa .terminar__txt{min-width:0; text-align:center}
+/* v6 */
+.ctransf{background:var(--surface)}
+.ctransf__ped{display:block; text-align:center; margin:0; padding:.95rem 1rem .1rem; background:none;
+  font-family:var(--sans); font-size:.78rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+.ctransf__datos{padding:.2rem 1rem .4rem}
+.ctransf__datos .cdato:last-of-type{border-bottom:0}
+.ctransf__aviso{margin:-.3rem 0 .4rem; font-size:.78rem; color:var(--ink-soft)}
+.ctransf__ya{margin:.8rem 0 0; padding:.85rem .95rem; border-radius:14px}
+.ctransf__err{margin:.5rem 0 0}
+.csube{border:1px solid var(--line); border-radius:14px; background:var(--surface); padding:.9rem 1rem 1rem !important;
+  margin-top:.8rem !important; animation:aparecerSube .3s ease-out}
+.csube[hidden]{display:none}
+@keyframes aparecerSube{from{opacity:0; transform:translateY(-6px)}to{opacity:1; transform:none}}
+.csube__tit{margin:0 0 .6rem; font-family:var(--sans); font-size:.63rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-faint)}
+.csube__tit i{font-style:normal; opacity:.75}
+/* entrega en el carrito */
+.carro__envio{display:block; margin-top:1.1rem}
+.carro__envio>span{display:block; font-family:var(--sans); font-size:.63rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-faint); margin-bottom:.42rem}
+.carro__envio .input{appearance:none; -webkit-appearance:none; width:100%; min-height:46px; border-radius:100px;
+  padding:.6rem 2.6rem .6rem 1.1rem; font-family:var(--sans); font-size:16px; color:var(--ink); cursor:pointer;
+  background:var(--surface) url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A7565' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 1rem center / 15px 15px}
+#carroCuerpo .cres__falta{margin:.1rem 0 .4rem}
+/* botones del proceso de compra con la tipografía de "Agregar" */
+#btnTerminar, #btnConfirmar, .clisto__wa{font-family:var(--sans); text-transform:none; letter-spacing:.01em;
+  font-size:1.1rem; font-weight:500; min-height:54px; padding:0 1rem}
+#btnTerminar .terminar__txt, #btnConfirmar .terminar__txt, .clisto__wa .terminar__txt{top:0; letter-spacing:.01em;
+  font-size:inherit; line-height:1.3}
+.clisto__datos{border:1px solid var(--line); border-radius:14px; background:var(--surface); padding:1rem; margin-top:.8rem}
+.clisto__datos .clisto__info{margin:0; padding-top:0; border-top:0}
+/* v7 */
+.ctransf__ped{background:linear-gradient(168deg,#F7EDE3,#EFE1D3); padding:.75rem 1rem; border-bottom:1px solid var(--line)}
+.ctransf__datos{padding:.15rem 1rem .25rem}
+.ctransf__datos .cdato{padding:.8rem 0}
+.cdato small{display:block; margin-top:.25rem}
+.ctransf__aviso{font-size:.78rem; color:var(--ink-soft); line-height:1.4; margin:0}
+.ctransf__tit{font-size:.82rem; color:var(--ink-soft); margin:0}
+.clisto__linea small{font-size:.74rem}
+.clisto__linea>div>small:first-child{font-family:var(--sans); font-size:.63rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-faint); margin-bottom:.1rem}
+.clisto__linea .clisto__dir{font-size:.82rem; color:var(--ink-soft)}
+.ctransf{overflow:hidden}
+.ctransf__ped{border-radius:0; margin:0}
+.ctransf__tit b{display:inline; font-size:inherit; font-weight:500; letter-spacing:0; color:var(--ink)}
+/* v8 */
+.csube{text-align:center}
+.csube__tit{text-align:left; margin-bottom:.25rem}
+.csube .csube__nota{text-align:left; margin:0 0 .85rem}
+.csube__ok{text-align:left}
+.clisto__datos .clisto__info{gap:.95rem}
+.clisto__linea{display:block}
+.clisto__rot{display:flex; align-items:center; gap:.5rem; margin:0 0 .3rem; font-family:var(--sans); font-size:.66rem;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); font-weight:500}
+.clisto__rot svg{flex:none; width:18px; height:18px; color:var(--accent)}
+.clisto__linea>b{display:block; padding-left:calc(18px + .5rem); font-weight:500; font-size:.95rem; line-height:1.35}
+.carro__envio{margin:1.1rem 0 .2rem}
+/* títulos del carrito: Entrega y Código de descuento */
+.carro__envio>span, .carro__rot{display:block; font-family:var(--sans); font-size:.7rem; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 .45rem}
+.carro__rot{margin-top:1.1rem}
+.carro__rot + .cupon, .carro__rot + .cupon-ok{margin-top:0}
+/* v9 · márgenes parejos en "Tus datos", texto final y "¿Dudas?" */
+#compraCuerpo .row2{row-gap:0; column-gap:.75rem}
+.clisto>p+p{margin-top:-.6rem}
+.clisto__dudas{font-size:.9rem; font-weight:600; color:var(--ink); margin:0 0 .6rem}
+/* v10 · rótulos como los del carrito, placeholders más claros, banco bajo el titular */
+.clisto__dudas{text-align:left}
+#compraCuerpo .field>span, .cdato>div>span{font-family:var(--sans); font-size:.7rem; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft)}
+#compraCuerpo .field>span i{opacity:1}
+#compraCuerpo .input::placeholder, #compraCuerpo .textarea::placeholder,
+#compraCuerpo input::placeholder, #compraCuerpo textarea::placeholder{color:#BDB0A5; opacity:1}
+.cdato small.ctransf__banco{margin-top:.1rem}
+.cdir__cab>span{font-family:var(--sans); font-size:.7rem; font-weight:500; letter-spacing:.16em; color:var(--ink-soft)}
+/* v11 · Copiar alineado con el valor */
+.ctransf__datos .cdato{display:block}
+.cdato__fila{display:flex; align-items:center; justify-content:space-between; gap:.7rem}
+.cdato__fila b{flex:1; min-width:0}
+.cdato__fila .ccopia{margin-block:-.4rem}
+/* v12 · más contraste sobre el fondo crema (resumen del pedido y franja "Pedido #") */
+.cresumen h3, .cres__items li, .cresumen .totales div{color:var(--ink)}
+.cresumen .totales .total{color:#3F2F25}
+.cresumen .totales .desc span:last-child{color:#6E4E3A}
+.ctransf__ped{color:#5E4535}
+.cdato__fila b{white-space:nowrap; overflow-wrap:normal}
+@media (max-width:360px){ .cdato__fila .ccopia{padding:.4rem .65rem; gap:.3rem} }
+/* v13 · líneas del resumen iguales; marca de versión de prueba */
+.cresumen .totales{border-top-color:rgba(74,56,46,.2)}
+.cresumen .totales .total{border-top-color:rgba(74,56,46,.2)}
+.cversion{margin:1rem 0 0; text-align:center; font-size:.7rem; color:var(--ink-faint); opacity:.7}
+/* v14 · "Comprobante (opcional)" como los demás rótulos; mensaje final con el ancho del primer renglón */
+.csube__tit{font-size:.7rem; font-weight:500; letter-spacing:.16em; color:var(--ink-soft)}
+.csube__tit i{opacity:1}
+.clisto__msj{width:fit-content; max-width:100%; margin:0 auto 1.1rem}
+.clisto__msj p{margin:0; color:var(--ink-soft); font-size:.95rem; line-height:1.5}
+.clisto__msj p+p{width:0; min-width:calc(100% + 1rem); margin:.35rem -.5rem 0}
+/* v15 · entrega del carrito: tres opciones con el costo a la vista */
+.centrs{display:grid; border:1px solid var(--line-strong); border-radius:14px; overflow:hidden; background:var(--surface)}
+.centr{display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:.7rem; width:100%;
+  min-height:48px; padding:.6rem .9rem; text-align:left; font-family:var(--sans); font-size:.95rem; color:var(--ink);
+  background:none; border:0; cursor:pointer; transition:background .2s}
+.centr + .centr{border-top:1px solid var(--line)}
+.centr__radio{width:18px; height:18px; border-radius:50%; border:1.5px solid var(--line-strong); background:var(--surface);
+  transition:border-color .2s, box-shadow .2s}
+.centr__costo{font-weight:500; font-variant-numeric:tabular-nums; white-space:nowrap}
+.centr.on{background:var(--panel-2)}
+.centr.on .centr__radio{border-color:var(--accent); box-shadow:inset 0 0 0 4px var(--surface); background:var(--accent)}
+.centr.on .centr__nom{font-weight:500}
+.centr:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+/* v16 · resumen de la compra arriba de los pasos */
+.ctop{display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:.8rem;
+  padding:.7rem .85rem; margin:0 0 1rem; border-radius:16px; background:var(--panel-2)}
+.ctop__foto{position:relative; width:52px; height:52px; border-radius:12px; background:var(--surface);
+  display:grid; place-items:center; flex:none}
+.ctop__foto img{width:100%; height:100%; object-fit:cover; border-radius:12px}
+.ctop__foto svg{width:22px; height:22px; color:var(--accent)}
+.ctop__n{position:absolute; top:-6px; right:-6px; min-width:20px; height:20px; padding:0 5px; border-radius:100px;
+  background:var(--ink); color:#fff; font-family:var(--sans); font-size:.7rem; font-weight:600; line-height:20px; text-align:center}
+.ctop__txt{min-width:0; display:grid; gap:.15rem}
+.ctop__txt b{font-family:var(--sans); font-weight:600; font-size:.95rem; color:var(--ink);
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.ctop__env{font-family:var(--sans); font-size:.82rem; color:var(--accent); font-weight:500}
+.ctop__env.falta{color:var(--ink-soft); font-weight:400}
+.ctop__tot{text-align:right; display:grid; gap:.05rem}
+.ctop__tot span{font-family:var(--sans); font-size:.75rem; color:var(--ink-soft)}
+.ctop__tot b{font-family:var(--sans); font-size:1.15rem; font-weight:600; color:var(--ink); white-space:nowrap; font-variant-numeric:tabular-nums}
+.ctop__tot small{font-size:.72rem; color:var(--ink-soft)}
+.ctop__txt b{display:flex; min-width:0}
+.ctop__nom{min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.ctop__mas{flex:none; white-space:nowrap; margin-left:.25em}
+/* la foto del resumen siempre cuadrada (con fotos verticales se estiraba hacia abajo) */
+.ctop__foto img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:12px}
+/* contorno de la foto del resumen: se despega del fondo crema */
+.ctop__foto{background:#fff; border:1px solid rgba(74,56,46,.3)}
+.ctop__foto img{inset:3px; width:calc(100% - 6px); height:calc(100% - 6px); border-radius:9px}
+/* contorno del recuadro del resumen, como la foto */
+.ctop{border:1px solid rgba(74,56,46,.22); box-shadow:0 2px 10px rgba(74,56,46,.08)}
+/* la pastilla del paso actual, con el mismo contorno y sombra que el resumen */
+.cpasos li{border:1px solid transparent}
+.cpasos li.hoy{border-color:rgba(74,56,46,.38)}
+/* contorno y sombra también en los botones propios del proceso de compra */
+.ccopia, .csube__btn{border-color:var(--contorno, rgba(74,56,46,.28))}
+/* "Tu pedido" en el paso de pago: la misma distancia que entre las tarjetas de la transferencia */
+#compraCuerpo .cbloque + #cResumen{margin-top:-.45rem}
+/* con transferencia, "Tu pedido" queda a la misma distancia que con efectivo */
+#cTransfCaja:not([hidden]){padding-bottom:14px}
+/* pastilla del paso actual: sombra más marcada, como los botones de comprar */
+.cpasos li.hoy{border-color:rgba(74,56,46,.38)}
+/* foto del resumen sin el marco blanco: ocupa todo el cuadro, como en el carrito */
+.ctop__foto img{inset:0; width:100%; height:100%; border-radius:11px}
+.ctop__foto{overflow:visible}
+/* v17 · estilo plano: el resumen del pedido con borde como las demás tarjetas */
+.cresumen{border:1px solid rgba(74,56,46,.22)}
+/* varios productos: fotos superpuestas (como un mazo de cartas), se asoma un pedazo de cada una */
+.ctop__pila{position:relative; height:52px; flex:none; width:60px}
+.ctop__pila--3{width:70px}
+.ctop__mini{position:absolute; top:5px; width:42px; height:42px; border-radius:10px; overflow:hidden;
+  background:#fff; border:1px solid rgba(74,56,46,.3); display:grid; place-items:center;
+  box-shadow:-2px 0 6px rgba(74,56,46,.18)}
+.ctop__mini img{width:100%; height:100%; object-fit:cover}
+.ctop__mini svg{width:18px; height:18px; color:var(--accent)}
+.ctop__mini:nth-child(1){right:0; z-index:3}
+.ctop__mini:nth-child(2){right:15px; z-index:2; rotate:-6deg}
+.ctop__mini:nth-child(3){right:29px; z-index:1; rotate:-12deg}
+.ctop__pila .ctop__n{z-index:4; right:-7px; top:-3px}
+/* la pastilla del paso actual vuelve a llevar sombra (pedido de Bruno) */
+.cpasos li.hoy{border-color:rgba(74,56,46,.38); box-shadow:0 3px 12px rgba(74,56,46,.22)}
+/* la pastilla del paso actual, finalmente sin sombra (solo el borde) */
+.cpasos li.hoy{box-shadow:none}
