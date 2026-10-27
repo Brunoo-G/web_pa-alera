@@ -6,8 +6,6 @@ Tienda online para Super Pañalera, una pañalera de Federal, Entre Ríos. Tiene
 
 **Demo:** https://panalerabeta.netlify.app/
 
-Ejemplo de ficha de producto: [Jabón líquido Upa La La](https://panalerabeta.netlify.app/p/tn-jabon-liquido-upa-la-la/jabon-liquido-upa-la-la)
-
 ## Tecnología
 
 | Parte | Tecnología |
