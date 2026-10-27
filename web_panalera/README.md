@@ -17,10 +17,15 @@ en Supabase.
 | `privacidad.html` | Política de privacidad |
 | `_redirects` | Link propio por producto (`/p/<id>/<nombre>`) |
 | `_headers` | Caché de la página y de las imágenes |
-| `robots.txt` | Permiso para buscadores |
-| `img/` | Imágenes de la tienda |
+| `robots.txt` | Permiso para buscadores y ubicación del mapa del sitio |
+| `img/` | Imágenes de la tienda (banners, logos, vista previa al compartir) |
+
+`/feed.xml` (catálogo para Google y Meta) y `/sitemap.xml` no son archivos: `_redirects`
+los toma de la función `catalogo` de Supabase, siempre al día con los productos.
 
 ## Publicar
 
 Se publica en Netlify arrastrando la carpeta completa a **Deploys**.
 No necesita compilación.
+
+Versión de prueba 84.

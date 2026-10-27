@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://xn--superpaalera-ghb.com.ar/sitemap.xml

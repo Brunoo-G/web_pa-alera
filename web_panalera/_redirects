@@ -1,3 +1,7 @@
 # Cada producto tiene su link: /p/<id>/<nombre>. Netlify sirve la misma página
 # y la web abre la ficha de ese producto.
 /p/*   /index.html   200
+# Catálogo para Google/Meta y mapa del sitio: los arma la función "catalogo"
+# de Supabase, siempre al día con la base.
+/feed.xml      https://nuioyiwjiufaddwqbxoj.supabase.co/functions/v1/catalogo/feed.xml      200
+/sitemap.xml   https://nuioyiwjiufaddwqbxoj.supabase.co/functions/v1/catalogo/sitemap.xml   200
